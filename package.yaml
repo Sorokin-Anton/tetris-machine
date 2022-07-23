@@ -1,6 +1,6 @@
-name:                demo
+name:                tetris-machine
 version:             0.1.0.0
-github:              "githubuser/demo"
+github:              "githubuser/tetris-machine"
 license:             BSD3
 author:              "Author name here"
 maintainer:          "example@example.com"
@@ -17,7 +17,7 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/demo#readme>
+description:         Please see the README on GitHub at <https://github.com/githubuser/tetris-machine#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -38,24 +38,26 @@ dependencies:
 - gloss
 - gloss-juicy
 - random
+- directory
 library:
   source-dirs: src
 ghc-options:
 - -Wall
 
 executables:
-  demo-exe:
+  tetris-machine-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
+    - -O2
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - demo
+    - tetris-machine
 
 tests:
-  demo-test:
+  tetris-machine-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -63,4 +65,4 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - demo
+    - tetris-machine

@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 
-name:           demo
+name:           tetris-machine
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/demo#readme>
-homepage:       https://github.com/githubuser/demo#readme
-bug-reports:    https://github.com/githubuser/demo/issues
+description:    Please see the README on GitHub at <https://github.com/githubuser/tetris-machine#readme>
+homepage:       https://github.com/githubuser/tetris-machine#readme
+bug-reports:    https://github.com/githubuser/tetris-machine/issues
 author:         Author name here
 maintainer:     example@example.com
 copyright:      2022 Author name here
@@ -21,13 +21,13 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/demo
+  location: https://github.com/githubuser/tetris-machine
 
 library
   exposed-modules:
-      Lib
+      TetrisMachine
   other-modules:
-      Paths_demo
+      Paths_tetris_machine
   hs-source-dirs:
       src
   ghc-options: -Wall
@@ -35,6 +35,7 @@ library
       aeson
     , base >=4.7 && <5
     , containers
+    , directory
     , gloss
     , gloss-juicy
     , ihaskell
@@ -52,18 +53,18 @@ library
     , unordered-containers
   default-language: Haskell2010
 
-executable demo-exe
+executable tetris-machine-exe
   main-is: Main.hs
   other-modules:
-      Paths_demo
+      Paths_tetris_machine
   hs-source-dirs:
       app
-  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -Wall -O2 -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
     , base >=4.7 && <5
     , containers
-    , demo
+    , directory
     , gloss
     , gloss-juicy
     , ihaskell
@@ -78,14 +79,15 @@ executable demo-exe
     , servant-server
     , servant-swagger
     , servant-swagger-ui
+    , tetris-machine
     , unordered-containers
   default-language: Haskell2010
 
-test-suite demo-test
+test-suite tetris-machine-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_demo
+      Paths_tetris_machine
   hs-source-dirs:
       test
   ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
@@ -93,7 +95,7 @@ test-suite demo-test
       aeson
     , base >=4.7 && <5
     , containers
-    , demo
+    , directory
     , gloss
     , gloss-juicy
     , ihaskell
@@ -108,5 +110,6 @@ test-suite demo-test
     , servant-server
     , servant-swagger
     , servant-swagger-ui
+    , tetris-machine
     , unordered-containers
   default-language: Haskell2010

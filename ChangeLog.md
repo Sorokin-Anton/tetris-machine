@@ -1,3 +1,3 @@
-# Changelog for demo
+# Changelog for tetris-machine
 
 ## Unreleased changes
