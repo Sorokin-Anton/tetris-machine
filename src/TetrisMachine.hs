@@ -9,7 +9,9 @@ import Data.Maybe (catMaybes)
 
 type Coord = Int
 
+
 data TetrisConfig = TetrisConfig {boardSize :: (Int, Int), cellSide :: Float}
+  deriving Show
 
 defaultTetrisConfig :: TetrisConfig
 defaultTetrisConfig =  TetrisConfig {boardSize = (16, 18), cellSide = 25}
@@ -31,15 +33,7 @@ mapEvents _ (EventKey key  Down _ _) = Just $ KeyPressed key
 mapEvents _ _ = Nothing
 
 
-playTetris :: TetrisConfig -> (TetrisEvent -> k -> k) -> (Float -> k -> k) -> (k -> TetrisPicture) -> k -> IO ()
-playTetris tc handleEvents handleTime  draw start =
-  play
-  (InWindow "Tetris machine" (800, 800) (10, 10))
-  white
-  60
-  start
-  (drawTetris tc . draw)
-  (maybe id handleEvents . mapEvents tc) handleTime
+
 
 drawTetris :: TetrisConfig -> TetrisPicture -> Picture
 drawTetris TetrisConfig{boardSize = (sizeX, sizeY), cellSide = side} pixelData =
@@ -56,3 +50,19 @@ drawTetris TetrisConfig{boardSize = (sizeX, sizeY), cellSide = side} pixelData =
 
 square :: Color -> Float -> Picture
 square c d = color c $ polygon [(0,0),(d,0),(d,d),(0,d)]
+
+playTetris ::
+  TetrisConfig
+  -> (TetrisConfig -> TetrisEvent -> k -> k)
+  -> (TetrisConfig -> Float -> k -> k)
+  -> (k -> TetrisPicture)
+  -> k
+  -> IO ()
+playTetris tc handleEvents handleTime  draw start =
+  play
+  (InWindow "Tetris machine" (800, 800) (10, 10))
+  white
+  60
+  start
+  (drawTetris tc . draw)
+  (maybe id (handleEvents tc) . mapEvents tc) (handleTime tc)
