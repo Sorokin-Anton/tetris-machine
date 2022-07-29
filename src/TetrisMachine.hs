@@ -52,9 +52,9 @@ square :: Color -> Float -> Picture
 square c d = color c $ polygon [(0,0),(d,0),(d,d),(0,d)]
 
 playTetris ::
-  TetrisConfig
-  -> (TetrisConfig -> TetrisEvent -> k -> k)
-  -> (TetrisConfig -> Float -> k -> k)
+  (k  -> TetrisConfig)
+  -> (TetrisEvent -> k -> k)
+  -> (Float -> k -> k)
   -> (k -> TetrisPicture)
   -> k
   -> IO ()
@@ -64,5 +64,6 @@ playTetris tc handleEvents handleTime  draw start =
   white
   60
   start
-  (drawTetris tc . draw)
-  (maybe id (handleEvents tc) . mapEvents tc) (handleTime tc)
+  (\k -> drawTetris (tc k) $ draw k)
+  (\e k -> maybe id handleEvents (mapEvents (tc k) e) k)
+  handleTime
