@@ -6,6 +6,7 @@ import Graphics.Gloss
 import Data.Map (Map)
 import qualified Data.Map as M
 import Data.Maybe (catMaybes)
+import Graphics.Gloss.Interface.IO.Game (playIO)
 
 type Coord = Int
 
@@ -66,4 +67,21 @@ playTetris tc handleEvents handleTime  draw start =
   start
   (\k -> drawTetris (tc k) $ draw k)
   (\e k -> maybe id handleEvents (mapEvents (tc k) e) k)
+  handleTime
+
+playTetrisIO ::
+  (k  -> TetrisConfig)
+  -> (TetrisEvent -> k -> IO k)
+  -> (Float -> k -> IO k)
+  -> (k -> IO TetrisPicture)
+  -> k
+  -> IO ()
+playTetrisIO tc handleEvents handleTime  draw start =
+  playIO
+  (InWindow "Tetris machine" (800, 800) (10, 10))
+  white
+  60
+  start
+  (\k -> drawTetris (tc k) <$> draw k)
+  (\e k -> maybe pure handleEvents (mapEvents (tc k) e) k)
   handleTime

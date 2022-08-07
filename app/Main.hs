@@ -1,5 +1,5 @@
 module Main where
-import qualified GameOfLife
+import qualified Games.GameOfLife
 
 main :: IO ()
-main = GameOfLife.main
+main = Games.GameOfLife.main

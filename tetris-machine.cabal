@@ -25,7 +25,7 @@ source-repository head
 
 library
   exposed-modules:
-      GameOfLife
+      Games.GameOfLife
       TetrisMachine
   other-modules:
       Paths_tetris_machine
