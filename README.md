@@ -21,35 +21,75 @@ as
 
 
 
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
 
 
 
 
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
+
+
+a
 
 
 
+a
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-asdas
+[a](#Tetris-machine)
 [b](#Tetris-machine)
 
 [c](#bad)
